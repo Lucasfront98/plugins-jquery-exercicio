@@ -1,42 +1,50 @@
-$('#telefone').mascara('(00) 00000-0000', {
-    placeholder: '(DDD) 12345-6789'
-})
+$(document).ready(function () {
+    $('#carousel-imagens').slick({
+        autoplay: true,
+    });
 
-$('#cpf').mascara('000.000.000-00', {
-    placeholder: '123.456.789-00'
-})
+    $('#telefone').mask('(00) 00000-0000');
+    $('#cpf').mask('000-000-000-00');
+    $('#ceo').mask('00.000.000');
 
-$('#cep').mascara('00000-000', {
-    placeholder: '012345-678'
-})
-
-$('form').validate({
+    $('form').validate({
     rules: {
         nome: {
-            requerido: true
+            required: true
         },
         email: {
-            requerido: true,
+            required: true,
             email: true
         },
         telefone: {
-            requerido: true
-        },
-        endereco: {
-            requerido: true
-        },
-        cep: {
-            requerido: true
+            required: true
         },
         cpf: {
-            requerido: true
+            required: true
+        },
+        endereco: {
+            required: true
+        },
+        cep: {
+            required: true
         },
     },
-    submitHandler: function (form) {
-        alert("Sua requisição foi enviada para análise, parabéns pela aquisição!");
-        form.reset();
+    messages: {
+    nome: 'Por favor insira o seu nome!',
+    email: 'Por favor insira o seu e-mail!',
+    telefone: 'Por favor insira o seu telefone!',
+    endereco: 'Por favor insira seu endereço!',
+    cpf: 'Por favor insira o seu cpf!',
+    cep: 'Por favor insira o seu cep!',
     },
-    invalidHandler: function (form, validator) {
-        alert("Por favor, preencha os campos para prosseguir com a compra!");
+    submitHandler: function(form) {
+    console.log(form)
+    },
+    invalidHandler: function(evento, validador) {
+        let camposIncorretos = validador.numberOfInvalids();
+        console.log(camposIncorretos)
+        
     }
+
+})
 })
